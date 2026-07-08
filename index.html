@@ -1,29 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>GuruMula – Your Financial Wisdom</title>
-  <meta name="description" content="GuruMula helps you manage financial wisdom securely and locally.">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Keep your existing CSS bundle -->
-  <link rel="stylesheet" href="styles-abc123.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GuruMula - Your Financial Wisdom, Local & Secure</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link data-trunk rel="css" href="static/styles.css" />
 </head>
 <body>
-  <header>
-    <h1>GuruMula</h1>
-    <p>Your Financial Wisdom, Local & Secure</p>
-  </header>
-
-  <main id="app">
-    <!-- Your JS/WASM app will mount here -->
-    <noscript>Please enable JavaScript to use GuruMula.</noscript>
-  </main>
-
-  <footer>
-    <p>&copy; 2026 GuruMula. All rights reserved.</p>
-  </footer>
-
-  <!-- Keep your existing JS bundle -->
-  <script src="guru-mula-xyz.js"></script>
+    <div id="app"></div>
+    <script type="module">
+        import init from './target/wasm32-unknown-unknown/release/guru_mula.js';
+        try {
+            await init();
+        } catch (error) {
+            console.error('Failed to start GuruMula:', error);
+            document.getElementById('app').innerHTML = `
+                <div style="padding: 2rem; text-align: center; font-family: sans-serif; color: #c53030;">
+                    <h1 style="font-size: 2rem;">⚠️ Failed to load GuruMula</h1>
+                    <p style="color: #718096;">Error: ${error.message || 'Unknown error'}</p>
+                    <p style="color: #718096; font-size: 0.9rem; margin-top: 1rem;">Check console for details</p>
+                </div>
+            `;
+        }
+    </script>
 </body>
 </html>
