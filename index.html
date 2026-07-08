@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GuruMula - Your Financial Wisdom, Local & Secure</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles-8f55a2628750c2b.css" integrity="sha384-OhQJrWQU8nJW5kfE4BmC9GtyHQLCAsV8RZiMVifn9jXiZrnEoHZ8I408E21I9vWR"/>
+<link rel="modulepreload" href="/guru-mula-2f7b9173b89a02b4.js" crossorigin="anonymous" integrity="sha384-xQKJ4cg/PP1TXnJOUCLLl1iWEjs0DfLhLQiaMb5nSXJQ9Cm80ELg3Ji1Jd4g1CGF"><link rel="preload" href="/guru-mula-2f7b9173b89a02b4_bg.wasm" crossorigin="anonymous" integrity="sha384-tz8tCh2EZIOZCDoVZv6N0LSrTqRz+ezTuwJwP6x1DRN7qqWL3tGOi0JgZaoBe7DD" as="fetch" type="application/wasm"></head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loading-container" style="background-image: url('static/images/guru-mula-back1.png');">
+            <div class="loading-overlay">
+                <img src="static/images/guru-mula-logo.png" alt="GuruMula Logo" class="loading-logo" />
+                <h1 class="loading-title">{"GuruMula"}</h1>
+                <p class="loading-tagline">{"Your Financial Wisdom, Local & Secure"}</p>
+                <div class="spinner"></div>
+                <p class="loading-credit">{"Loading your financial sanctuary..."}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- App mounts here -->
+    <div id="app"></div>
+
+    <script>
+        // Hide loading screen after 4 seconds
+        setTimeout(() => {
+            const loading = document.getElementById('loading-screen');
+            if (loading) {
+                loading.style.opacity = '0';
+                loading.style.transition = 'opacity 0.8s ease';
+                setTimeout(() => {
+                    loading.style.display = 'none';
+                }, 800);
+            }
+        }, 4000);
+    </script>
+
+    <script type="module">
+        import init from './target/wasm32-unknown-unknown/release/guru_mula.js';
+        
+        try {
+            await init();
+        } catch (error) {
+            console.error('Failed to start GuruMula:', error);
+            // Still hide loading screen
+            const loading = document.getElementById('loading-screen');
+            if (loading) {
+                loading.style.opacity = '0';
+                loading.style.transition = 'opacity 0.8s ease';
+                setTimeout(() => {
+                    loading.style.display = 'none';
+                }, 800);
+            }
+            document.getElementById('app').innerHTML = `
+                <div style="padding: 2rem; text-align: center; font-family: sans-serif; color: #c53030;">
+                    <h1 style="font-size: 2rem;">⚠️ Failed to load GuruMula</h1>
+                    <p style="color: #718096;">Error: ${error.message || 'Unknown error'}</p>
+                    <p style="color: #718096; font-size: 0.9rem; margin-top: 1rem;">Check console for details</p>
+                </div>
+            `;
+        }
+    </script>
+
+<script type="module">
+import init, * as bindings from '/guru-mula-2f7b9173b89a02b4.js';
+const wasm = await init({ module_or_path: '/guru-mula-2f7b9173b89a02b4_bg.wasm' });
+
+
+window.wasmBindings = bindings;
+
+
+dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
+
+</script></body>
+</html>

@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page Not Found - GuruMula</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #1a365d;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .error-container { padding: 2rem; }
+        .error-title { font-size: 4rem; font-weight: 800; color: #D4AF37; }
+        .error-sub { font-size: 1.2rem; color: rgba(255,255,255,0.7); margin: 1rem 0; }
+        .error-link {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background: #D4AF37;
+            color: #1a365d;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 700;
+            margin-top: 1rem;
+            transition: all 0.3s;
+        }
+        .error-link:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3); }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <h1 class="error-title">404</h1>
+        <p class="error-sub">Oops! The page you're looking for doesn't exist.</p>
+        <a href="/" class="error-link">🏠 Return Home</a>
+    </div>
+</body>
+</html>
